@@ -1,32 +1,34 @@
 
 import { 
-  LucideHome, 
-  LucideBuilding2, 
-  LucideMapPin, 
-  LucideSettings 
+  Home, 
+  Building2, 
+  MapPin, 
+  Settings,
+  ArrowRight
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const services = [
   {
     title: "Видеонаблюдение для дома",
     description: "Защитите свой дом и семью с помощью современных систем видеонаблюдения с удаленным доступом.",
-    icon: <LucideHome className="w-10 h-10" />
+    icon: <Home className="w-10 h-10" />
   },
   {
     title: "Решения для бизнеса",
     description: "Комплексные системы видеонаблюдения для офисов, магазинов и производственных помещений.",
-    icon: <LucideBuilding2 className="w-10 h-10" />
+    icon: <Building2 className="w-10 h-10" />
   },
   {
     title: "Уличное видеонаблюдение",
     description: "Всепогодные камеры с высоким разрешением для мониторинга территории вокруг вашего объекта.",
-    icon: <LucideMapPin className="w-10 h-10" />
+    icon: <MapPin className="w-10 h-10" />
   },
   {
     title: "Техническое обслуживание",
     description: "Регулярная проверка, настройка и обслуживание систем видеонаблюдения любой сложности.",
-    icon: <LucideSettings className="w-10 h-10" />
+    icon: <Settings className="w-10 h-10" />
   }
 ];
 
@@ -51,6 +53,11 @@ const ServicesSection = () => {
               <CardContent>
                 <p className="text-muted-foreground">{service.description}</p>
               </CardContent>
+              <CardFooter>
+                <Button variant="ghost" className="p-0 h-auto" size="sm">
+                  Подробнее <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </CardFooter>
             </Card>
           ))}
         </div>

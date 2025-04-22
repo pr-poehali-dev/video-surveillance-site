@@ -1,57 +1,84 @@
 
-import { Button } from "@/components/ui/button";
-import { LucideMenu, LucideX } from "lucide-react";
 import { useState } from "react";
-import Logo from "./Logo";
+import { Button } from "@/components/ui/button";
+import Logo from "@/components/Logo";
+import { Menu, X } from "lucide-react";
+
+const navItems = [
+  { title: "Главная", href: "#" },
+  { title: "Услуги", href: "#services" },
+  { title: "Преимущества", href: "#benefits" },
+  { title: "Контакты", href: "#contact" },
+];
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="border-b py-4">
-      <div className="container mx-auto px-4 flex justify-between items-center">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div className="container flex h-16 items-center justify-between">
         <Logo />
         
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          <div className="flex gap-6">
-            <a href="#services" className="text-foreground hover:text-primary transition-colors">
-              Услуги
+        <nav className="hidden md:flex gap-6">
+          {navItems.map((item, index) => (
+            <a 
+              key={index}
+              href={item.href}
+              className="text-sm font-medium transition-colors hover:text-primary"
+            >
+              {item.title}
             </a>
-            <a href="#benefits" className="text-foreground hover:text-primary transition-colors">
-              Преимущества
-            </a>
-            <a href="#contact" className="text-foreground hover:text-primary transition-colors">
-              Контакты
-            </a>
-          </div>
-          <Button>Заказать звонок</Button>
+          ))}
+        </nav>
+        
+        <div className="hidden md:flex items-center gap-4">
+          <Button variant="ghost" size="sm">
+            Войти
+          </Button>
+          <Button size="sm">
+            Связаться с нами
+          </Button>
         </div>
-
-        {/* Mobile Menu Button */}
-        <Button variant="ghost" size="icon" onClick={toggleMenu} className="md:hidden">
-          {isMenuOpen ? <LucideX /> : <LucideMenu />}
-        </Button>
+        
+        <button 
+          className="md:hidden"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? (
+            <X className="h-6 w-6" />
+          ) : (
+            <Menu className="h-6 w-6" />
+          )}
+        </button>
       </div>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div className="md:hidden container mx-auto px-4 py-4 flex flex-col gap-4 animate-fade-in">
-          <a href="#services" className="text-foreground hover:text-primary py-2 border-b border-border">
-            Услуги
-          </a>
-          <a href="#benefits" className="text-foreground hover:text-primary py-2 border-b border-border">
-            Преимущества
-          </a>
-          <a href="#contact" className="text-foreground hover:text-primary py-2 border-b border-border">
-            Контакты
-          </a>
-          <Button className="mt-2">Заказать звонок</Button>
+      
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="container md:hidden py-4 pb-6">
+          <nav className="flex flex-col space-y-4">
+            {navItems.map((item, index) => (
+              <a 
+                key={index}
+                href={item.href}
+                className="text-sm font-medium transition-colors hover:text-primary"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.title}
+              </a>
+            ))}
+            <div className="flex flex-col gap-2 pt-2">
+              <Button variant="ghost" size="sm">
+                Войти
+              </Button>
+              <Button size="sm">
+                Связаться с нами
+              </Button>
+            </div>
+          </nav>
         </div>
       )}
-    </nav>
+    </header>
   );
 };
 
