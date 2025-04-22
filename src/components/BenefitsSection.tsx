@@ -4,7 +4,7 @@ import {
   ThumbsUp, 
   Users,
   Clock,
-  WifiCheck,
+  Wifi, // Заменил WifiCheck на Wifi
   Zap
 } from "lucide-react";
 
@@ -30,7 +30,7 @@ const benefits = [
     description: "Оперативная установка и настройка оборудования с минимальным вмешательством в интерьер."
   },
   {
-    icon: <WifiCheck className="w-12 h-12 text-primary" />,
+    icon: <Wifi className="w-12 h-12 text-primary" />, // Заменил WifiCheck на Wifi
     title: "Беспроводные решения",
     description: "Современные беспроводные системы видеонаблюдения без прокладки кабелей."
   },
